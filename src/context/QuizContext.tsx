@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, ReactNode } from 'react';
-import { useQuiz, UseQuizReturn } from '../hooks/useQuiz';
+import { createContext, useContext, type ReactNode } from 'react';
+import { useQuiz, type UseQuizReturn } from '../hooks/useQuiz';
 
 export const QuizContext = createContext<UseQuizReturn | null>(null);
 
