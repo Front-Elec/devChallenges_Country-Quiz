@@ -30,7 +30,8 @@ export function useQuiz(): UseQuizReturn {
       setAnswers(data.map(() => ({ selectedId: null, state: 'unanswered' })));
       setStatus('active');
       navigate('/quiz/0', { replace: true });
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_error) {
       setStatus('error');
     }
   }, [navigate]);
