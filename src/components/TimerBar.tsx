@@ -1,4 +1,3 @@
-import React from 'react';
 
 export interface TimerBarProps {
   secondsLeft: number; // 0-15

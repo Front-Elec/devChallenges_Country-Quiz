@@ -1,5 +1,4 @@
-import React from 'react';
-import { UserAnswer } from '../types/quiz';
+import type { UserAnswer } from '../types/quiz';
 
 export interface QuestionNavProps {
   total: number;
