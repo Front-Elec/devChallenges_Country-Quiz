@@ -12,6 +12,9 @@ export function useTimer(
   active: boolean
 ): UseTimerReturn {
   const [secondsLeft, setSecondsLeft] = useState(durationSeconds);
+  // resetKey forces the interval effect to re-run when reset() is called,
+  // even if `active` hasn't changed (e.g. navigating between unanswered questions).
+  const [resetKey, setResetKey] = useState(0);
   const intervalRef = useRef<number | null>(null);
   const onExpireRef = useRef(onExpire);
 
@@ -29,6 +32,8 @@ export function useTimer(
   const reset = useCallback(() => {
     stop();
     setSecondsLeft(durationSeconds);
+    // Incrementing resetKey triggers the interval effect to restart.
+    setResetKey((k) => k + 1);
   }, [durationSeconds, stop]);
 
   useEffect(() => {
@@ -49,7 +54,9 @@ export function useTimer(
     }, 1000);
 
     return () => stop();
-  }, [active, stop]);
+  // resetKey is intentionally included: it forces a full interval restart on reset().
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, stop, resetKey]);
 
   return { secondsLeft, reset, stop };
 }
