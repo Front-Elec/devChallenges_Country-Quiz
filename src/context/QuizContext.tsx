@@ -1,7 +1,7 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 import { useQuiz, UseQuizReturn } from '../hooks/useQuiz';
 
-const QuizContext = createContext<UseQuizReturn | null>(null);
+export const QuizContext = createContext<UseQuizReturn | null>(null);
 
 export function QuizProvider({ children }: { children: ReactNode }) {
   const quiz = useQuiz();
